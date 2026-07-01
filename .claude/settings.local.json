@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \"import sys; print\\(sys.executable\\)\")",
+      "Bash(ruff check *)",
+      "Bash(echo \"EXIT:$?\")",
+      "Bash(mypy --strict src/)",
+      "Bash(pytest --cov=src --cov-report=term-missing -q)",
+      "Bash(export PYTHONPATH=src)",
+      "Bash(python -m mini_inventory.inventory add widget 10 2.5)",
+      "Bash(python -m mini_inventory.inventory add widget 5 9.99)",
+      "Bash(python -m mini_inventory.inventory total)",
+      "Bash(python -m mini_inventory.inventory low)",
+      "Bash(python -m pytest -q)",
+      "Bash(python -m ruff check src/ tests/)",
+      "Bash(python -m mypy --strict src/)",
+      "Bash(python -m pytest --cov=src --cov-report=term-missing -q)"
+    ]
+  }
+}

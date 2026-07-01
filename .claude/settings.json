@@ -1,0 +1,25 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "case \"$CLAUDE_TOOL_INPUT_FILE_PATH\" in *.py) echo '--- [hook] ruff ---'; ruff check src/ tests/ 2>&1 | tail -n 15; echo '--- [hook] pytest ---'; pytest -q 2>&1 | tail -n 15 ;; esac"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "FAIL=0; ruff check src/ tests/ > /tmp/ruff_result.txt 2>&1 || FAIL=1; mypy --strict src/ > /tmp/mypy_result.txt 2>&1 || FAIL=1; pytest --cov=src --cov-fail-under=85 -q > /tmp/pytest_result.txt 2>&1 || FAIL=1; if [ $FAIL -eq 1 ]; then printf '{\"decision\": \"block\", \"reason\": \"품질 기준 미달. /tmp/ruff_result.txt, /tmp/mypy_result.txt, /tmp/pytest_result.txt 확인 후 code-reviewer 서브에이전트로 재진단하세요.\"}'; exit 2; fi"
+          }
+        ]
+      }
+    ]
+  }
+}
