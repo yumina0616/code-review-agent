@@ -14,7 +14,21 @@
       "Bash(python -m pytest -q)",
       "Bash(python -m ruff check src/ tests/)",
       "Bash(python -m mypy --strict src/)",
-      "Bash(python -m pytest --cov=src --cov-report=term-missing -q)"
+      "Bash(python -m pytest --cov=src --cov-report=term-missing -q)",
+      "PowerShell(\\(Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned\\) ; \\(& c:\\\\Users\\\\dbals\\\\OneDrive\\\\Desktop\\\\PROJECT\\\\code-review-agent\\\\.venv\\\\Scripts\\\\Activate.ps1\\))",
+      "Bash(python -m pytest --cov=src --cov-report=term-missing)",
+      "Bash(echo \"PYTEST_EXIT=$?\")",
+      "Bash(./.venv/Scripts/ruff.exe check *)",
+      "Bash(echo \"RUFF_EXIT=$?\")",
+      "Bash(./.venv/Scripts/mypy.exe --strict src/)",
+      "Bash(echo \"MYPY_EXIT=$?\")",
+      "Bash(./.venv/Scripts/pytest.exe --cov=src --cov-report=term-missing)",
+      "Read(//c//**)",
+      "Bash(./.venv/Scripts/pytest.exe --cov=src --cov-report=term-missing -q)",
+      "Bash(cat .claude/settings.json)",
+      "Bash(cat .claude/settings.local.json)",
+      "Bash(pytest --version)",
+      "Bash(pip show *)"
     ]
   }
 }
